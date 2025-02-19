@@ -1,0 +1,9 @@
+.art-img {
+    /* Transição de 0.1s com um delay de 0.3s */
+    transition: transform 0.1s ease 0.3s;
+  }
+  
+  .art-img:hover {
+    /* Aplica zoom de 350% */
+    transform: scale(3.5);
+  }

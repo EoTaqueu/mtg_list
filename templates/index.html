@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Dados</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Lista de Cartas Magic:The Gathering</h1>
+    <table border="1">
+        <tr>
+            <th>
+                <a href="{{ url_for('mostrar_tabela', sort_by='nome', order='desc' if sort_by=='nome' and order=='asc' else 'asc') }}">
+                    Nome 
+                    {% if sort_by == 'nome' %}
+                        {% if order == 'asc' %}  {% else %}  {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="{{ url_for('mostrar_tabela', sort_by='colecao', order='desc' if sort_by=='colecao' and order=='asc' else 'asc') }}">
+                    Coleção 
+                    {% if sort_by == 'nome' %}
+                        {% if order == 'asc' %}  {% else %}  {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th><a>Arte</a></th>
+            <th>
+                <a href="{{ url_for('mostrar_tabela', sort_by='foil', order='desc' if sort_by=='foil' and order=='asc' else 'asc') }}">
+                    Foil 
+                    {% if sort_by == 'nome' %}
+                        {% if order == 'asc' %}  {% else %}  {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="{{ url_for('mostrar_tabela', sort_by='lingua', order='desc' if sort_by=='lingua' and order=='asc' else 'asc') }}">
+                    Idioma 
+                    {% if sort_by == 'nome' %}
+                        {% if order == 'asc' %}  {% else %}  {% endif %}
+                    {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="{{ url_for('mostrar_tabela', sort_by='quantidade', order='desc' if sort_by=='quantidade' and order=='asc' else 'asc') }}">
+                    Qtda
+                    {% if sort_by == 'valor' %}
+                        ({{ order }})
+                    {% endif %}
+                </a>
+            </th>
+            <th>
+                <a href="{{ url_for('mostrar_tabela', sort_by='valor', order='desc' if sort_by=='valor' and order=='asc' else 'asc') }}">
+                    Valor
+                    {% if sort_by == 'valor' %}
+                        ({{ order }})
+                    {% endif %}
+                </a>
+            </th>
+        </tr>
+        {% for item in dados %}
+        <tr>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.colecao }}</td>
+            <td><img class="art-img" src="{{ item.arte }}" width="100"></td>
+            <td>{{ item.foil }}</td>
+            <td>
+                {% if item.lingua == 'pt' %}
+                    <img src="{{ url_for('static', filename='images/br.png') }}" alt="Brasil" width="70">
+                {% elif item.lingua == 'en' %}
+                    <img src="{{ url_for('static', filename='images/eua.png') }}" alt="Estados Unidos" width="70">
+                {% else %}
+                    {{ item.lingua }}
+              {% endif %}
+            </td>
+            <td>{{ item.quantidade }}</td>
+            <td>{{ item.valor }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
