@@ -4,7 +4,7 @@ Flask==3.1.0
 gunicorn==23.0.0
 jsonpointer==2.1
 matplotlib==3.9.2
-mkl-service==2.4.0
+mkl-service==2.4.1
 protobuf==4.25.3
 pyasn1-modules==0.2.8
 pyls-spyder==0.4.0
